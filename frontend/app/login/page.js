@@ -25,9 +25,7 @@ export default function LoginPage() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Login failed');
 
-      // store token in localStorage (temp solution)
       localStorage.setItem('token', data.token);
-      // Redirect to the product dashboard
       router.push('/dashboard');
     } catch (err) {
       setError(err.message);
@@ -64,7 +62,7 @@ export default function LoginPage() {
 
         {/* Register Link */}
         <p style={linkStyle}>
-          Don't have an account? <span onClick={() => router.push('/register')} style={linkTextStyle}>Register here</span>
+          Don&apos;t have an account? <span onClick={() => router.push('/register')} style={linkTextStyle}>Register here</span>
         </p>
 
         {/* Close Button */}
