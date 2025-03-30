@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function UploadProductPage() {
@@ -13,12 +13,14 @@ export default function UploadProductPage() {
   });
   const [error, setError] = useState('');
 
-  useState(() => {
-    const storedToken = localStorage.getItem('token');
-    if (!storedToken) {
-      router.push('/login');
-    } else {
-      setToken(storedToken);
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const storedToken = localStorage.getItem('token');
+      if (!storedToken) {
+        router.push('/login');
+      } else {
+        setToken(storedToken);
+      }
     }
   }, []);
 
