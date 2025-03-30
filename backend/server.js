@@ -10,7 +10,11 @@ const app = express();
 
 // CORS configuration
 app.use(cors({
-  origin: ["http://localhost:3000", "http://localhost:3001"],
+  origin: [
+    "https://sellsphere-frontend.onrender.com", // ✅ Live frontend domain (update if needed)
+    "http://localhost:3000",
+    "http://localhost:3001"
+  ],
   credentials: true
 }));
 
@@ -26,7 +30,7 @@ app.get("/", (req, res) => {
 
 // Routes
 app.use("/api/auth", require("./routes/authRoutes"));
-app.use("/api/products", require("./routes/productRoutes")); // NEW
+app.use("/api/products", require("./routes/productRoutes")); // ✅ Product routes
 
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
