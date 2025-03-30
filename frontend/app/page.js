@@ -4,8 +4,12 @@ import { useRouter } from 'next/navigation';
 
 export default function LandingPage() {
   const [products, setProducts] = useState([]);
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '', enquiry: '' });
-  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    enquiry: ''
+  });
   const router = useRouter();
 
   useEffect(() => {
@@ -17,8 +21,9 @@ export default function LandingPage() {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    alert('Your enquiry has been submitted!');
     console.log('Form Data Submitted:', formData);
+    // You can add further logic here to process or send the form data (e.g., send to an API or email service)
+    alert('Your enquiry has been submitted!');
   };
 
   const handleInputChange = (e) => {
@@ -26,29 +31,30 @@ export default function LandingPage() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const toggleMobileMenu = () => {
-    setIsMobileNavOpen(!isMobileNavOpen);
-  };
-
   return (
     <div style={{ fontFamily: 'sans-serif', background: '#f8f9fa', color: '#333' }}>
-      
       {/* 🌐 NAVIGATION */}
-      <nav style={navStyle}>
+      <nav style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: '1.5rem 2rem',
+        backgroundColor: '#ffffff',
+        borderBottom: '1px solid #eee',
+        position: 'sticky',
+        top: 0,
+        zIndex: 1000
+      }}>
         <h1 style={{ fontSize: '1.8rem', fontWeight: 'bold' }}>Sellsphere</h1>
-
-        <div style={{ display: 'none', gap: '0.5rem', alignItems: 'center' }} className="nav-desktop">
-          {navButtons(router)}
+        <div style={{ display: 'flex', gap: '1rem' }}>
+          <button onClick={() => scrollToSection('about')} style={navBtn}>About</button>
+          <button onClick={() => scrollToSection('products')} style={navBtn}>Products</button>
+          <button onClick={() => scrollToSection('blog')} style={navBtn}>Blog</button>
+          <button onClick={() => scrollToSection('contact')} style={navBtn}>Contact Us</button>
+          <button onClick={() => router.push('/login')} style={navBtn}>Login</button>
+          <button onClick={() => router.push('/register')} style={{ ...navBtn, backgroundColor: '#333', color: '#fff' }}>Register</button>
         </div>
-
-        <button onClick={toggleMobileMenu} style={burgerButtonStyle} className="burger-btn">☰</button>
       </nav>
-
-      {isMobileNavOpen && (
-        <div style={mobileMenuStyle}>
-          {navButtons(router)}
-        </div>
-      )}
 
       {/* 💬 HERO SECTION */}
       <section id="hero" style={{
@@ -282,6 +288,7 @@ export default function LandingPage() {
         </form>
       </section>
 
+      {/* 🧾 FOOTER */}
       <footer style={{
         textAlign: 'center',
         padding: '2rem',
@@ -295,59 +302,26 @@ export default function LandingPage() {
   );
 }
 
-// ✅ Shared nav buttons logic
-function navButtons(router) {
-  return (
-    <>
-      <button onClick={() => scrollToSection('about')} style={navBtn}>About</button>
-      <button onClick={() => scrollToSection('products')} style={navBtn}>Products</button>
-      <button onClick={() => scrollToSection('blog')} style={navBtn}>Blog</button>
-      <button onClick={() => scrollToSection('contact')} style={navBtn}>Contact</button>
-      <button onClick={() => router.push('/login')} style={navBtn}>Login</button>
-      <button onClick={() => router.push('/register')} style={{ ...navBtn, backgroundColor: '#333', color: '#fff' }}>Register</button>
-    </>
-  );
-}
-
-// ✅ Nav styling
-const navStyle = {
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  padding: '1.5rem 2rem',
-  backgroundColor: '#ffffff',
-  borderBottom: '1px solid #eee',
-  position: 'sticky',
-  top: 0,
-  zIndex: 1000
-};
-
-const burgerButtonStyle = {
-  background: 'none',
-  border: 'none',
-  fontSize: '1.5rem',
-  cursor: 'pointer',
-  display: 'block'
-};
-
-const mobileMenuStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  backgroundColor: '#fff',
-  padding: '1rem',
-  boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
-};
-
-// Reusable button style
+// 🎨 Reusable button styles
 const navBtn = {
   padding: '0.5rem 1rem',
   borderRadius: '5px',
   border: '1px solid #ccc',
   backgroundColor: '#f9f9f9',
   cursor: 'pointer',
-  fontWeight: 'bold',
-  margin: '0.3rem 0'
+  fontWeight: 'bold'
 };
+
+const inputStyle = {
+  padding: '0.8rem',
+  marginBottom: '1rem',
+  fontSize: '1rem',
+  borderRadius: '5px',
+  border: '1px solid #ccc',
+  backgroundColor: '#fff',
+  color: '#333',
+  boxShadow: '0 2px 5px rgba(0,0,0,0.05)',
+}
 
 function scrollToSection(sectionId) {
   const element = document.getElementById(sectionId);
