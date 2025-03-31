@@ -18,7 +18,7 @@ export default function Dashboard() {
 
   const fetchProducts = async (token) => {
     try {
-      const res = await fetch('http://localhost:5001/api/products/mine', {
+      const res = await fetch('https://sellsphere-production-5dca.up.railway.app/api/products/mine', {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -38,7 +38,7 @@ export default function Dashboard() {
     if (confirm('Are you sure you want to delete this product?')) {
       const token = localStorage.getItem('token');
       try {
-        const res = await fetch(`http://localhost:5001/api/products/${productId}`, {
+        const res = await fetch(`https://sellsphere-production-5dca.up.railway.app/api/products/${productId}`, {
           method: 'DELETE',
           headers: { Authorization: `Bearer ${token}` },
         });

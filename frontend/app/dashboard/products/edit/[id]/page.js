@@ -17,7 +17,7 @@ export default function EditProductPage() {
     }
 
     setToken(storedToken);
-    fetch(`https://sellsphere-backend.onrender.com/api/products/mine`, {
+    fetch(`https://sellsphere-production-5dca.up.railway.app/api/products/mine`, {
       headers: { Authorization: `Bearer ${storedToken}` },
     })
       .then(res => res.json())
@@ -33,7 +33,7 @@ export default function EditProductPage() {
     e.preventDefault();
 
     try {
-      const res = await fetch(`https://sellsphere-backend.onrender.com/api/products/${id}`, {
+      const res = await fetch(`https://sellsphere-production-5dca.up.railway.app/api/products/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

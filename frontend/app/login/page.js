@@ -16,7 +16,7 @@ export default function LoginPage() {
     setError('');
 
     try {
-      const res = await fetch('https://sellsphere-backend.onrender.com/api/auth/login', {
+      const res = await fetch('https://sellsphere-production-5dca.up.railway.app/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),

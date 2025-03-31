@@ -16,7 +16,7 @@ export default function RegisterPage() {
     setError('');
 
     try {
-      const res = await fetch('https://sellsphere-backend.onrender.com/api/auth/register', {
+      const res = await fetch('https://sellsphere-production-5dca.up.railway.app/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
