@@ -17,7 +17,7 @@ export default function EditProductPage() {
     }
 
     setToken(storedToken);
-    fetch(`http://localhost:5001/api/products/mine`, {
+    fetch(`https://sellsphere-backend.onrender.com/api/products/mine`, {
       headers: { Authorization: `Bearer ${storedToken}` },
     })
       .then(res => res.json())
@@ -33,7 +33,7 @@ export default function EditProductPage() {
     e.preventDefault();
 
     try {
-      const res = await fetch(`http://localhost:5001/api/products/${id}`, {
+      const res = await fetch(`https://sellsphere-backend.onrender.com/api/products/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

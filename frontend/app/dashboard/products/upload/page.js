@@ -42,7 +42,7 @@ export default function UploadProductPage() {
     body.append('file', formData.file);
 
     try {
-      const res = await fetch('http://localhost:5001/api/products/upload', {
+      const res = await fetch('https://sellsphere-backend.onrender.com/api/products/upload', {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,

@@ -13,7 +13,7 @@ export default function LandingPage() {
   const router = useRouter();
 
   useEffect(() => {
-    fetch('http://localhost:5001/api/products/all')
+    fetch('https://sellsphere-backend.onrender.com/api/products/all')
       .then(res => res.json())
       .then(data => setProducts(data.products || []))
       .catch(err => console.error('Failed to load products:', err));
@@ -118,7 +118,7 @@ export default function LandingPage() {
                 <h4 style={{ fontSize: '1.1rem', marginBottom: '0.5rem' }}>{product.title}</h4>
                 <p style={{ fontSize: '0.9rem', color: '#666', flexGrow: 1 }}>{product.description}</p>
                 <p style={{ fontWeight: 'bold', margin: '1rem 0 0.5rem' }}>R{product.price}</p>
-                <a href={`http://localhost:5001/${product.file_path}`} target="_blank" rel="noreferrer"
+                <a href={`https://sellsphere-backend.onrender.com/${product.file_path}`} target="_blank" rel="noreferrer"
                   style={{ fontSize: '0.9rem', color: '#0070f3', textDecoration: 'underline' }}>
                   Preview File
                 </a>
