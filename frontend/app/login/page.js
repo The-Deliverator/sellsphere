@@ -23,13 +23,15 @@ export default function LoginPage() {
       });
 
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Login failed');
-
+      if (!res.ok) {
+        throw new Error(data.message || data.error || 'Login failed');
+      }
+      
       localStorage.setItem('token', data.token);
       router.push('/dashboard');
-    } catch (err) {
-      setError(err.message);
-    }
+      } catch (err) {
+        setError(err.message || 'Something went wrong');
+      }
   };
 
   return (
